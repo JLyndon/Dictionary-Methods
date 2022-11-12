@@ -39,15 +39,15 @@ BBlue = "\u001b[34;1m"
 End = "\33[0m"
 Itlc = "\33[3m"
 Bldtxt = "\33[1m"
-DCyan = "\u001b[36;1m"
-Cyan = "\u001b[36"
+
+print("\n",f"Contact Tracing \33[41m{Bldtxt} Dictionary Methods {End}!".center(71, " "), "\n","━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━".center(60, " "),"\n", f"Feel free to {Red}explore{End} the program {Grn}features{End}!".center(77, " "), "\n", f"Register your profile; Stay {Blue}Safe{End} and {Yllw}Connected{End}.".center(80, " "),"\n","\n",f"{Blue}{Itlc}\nChoose an action from the menu{End}:")
 
 database = {}
 
 usrDecision = "proceed"  # Main Loop counter variable 
 
 while usrDecision == "proceed": # Main Loop
-    print("\nWhat would you like to do?\n\nMenu:\n\nType '1' to register a profile.\nType '2' to search a profile.\nType '3' or 'exit' to terminate.")
+    print("\nWhat would you like to do?\n\n", f"\n\33[44m{Bldtxt}       Menu       {End}", f"\n\n   Type '{Grn}1\33[0m' to register a profile.\n   Type '{Blue}2\33[0m' to search for a profile.\n   Type '{Red}3\33[0m' or '{Red}exit\33[0m' to terminate the program.")
     choices = ["1","2","3","exit"]
     usrAction = ""
     while True:
@@ -56,7 +56,7 @@ while usrDecision == "proceed": # Main Loop
             usrAction = decisionU
             break
         else:
-            print("Enter a valid command")
+            print(f"{Red}Enter a valid command{End}")
     if usrAction == "1": 
         print("\nProvide your personal details below.\n")
         print("Full Name")    # Prompts for personal details --- OPTION 1
@@ -110,7 +110,7 @@ while usrDecision == "proceed": # Main Loop
                         print("Profile Saved!")
                         break
                     else:
-                        print("Enter a valid command")
+                        print(f"{Red}Enter a valid command{End}")
                 break
 
     elif usrAction == "2":
@@ -155,14 +155,14 @@ while usrDecision == "proceed": # Main Loop
                             proceeding = "not"
                             break
                         else:
-                            print("Enter a valid command")
+                            print(f"{Red}Enter a valid command{End}")
                     break
                 else:
-                    print("Enter a valid command")
+                    print(f"{Red}Enter a valid command{End}")
         
     elif (usrAction == "3") or (usrAction == "exit"):
         usrDecision = "terminate"
     else:
-        print("\nEnter a valid command")
+        print(f"\n{Red}Enter a valid command{End}")
 else:
     print("Have a nice day! :)")
