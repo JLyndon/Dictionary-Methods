@@ -95,7 +95,7 @@ while usrDecision == "proceed": # Main Loop
                 database_items = len(database)
                 nameConcat = " ".join(queryProf["Full Name"]) 
                 database.update({nameConcat : queryProf})
-                print("Profile Saved!")
+                print(f"{Grn}\nProfile Saved!{End}")
                 break
             elif usrVerify == "n":
                 print("Are you sure you want to discard this profile? (Y/N)")
@@ -107,7 +107,7 @@ while usrDecision == "proceed": # Main Loop
                         database_items = len(database)
                         nameConcat = " ".join(queryProf["Full Name"]) 
                         database.update({nameConcat : queryProf})
-                        print("Profile Saved!")
+                        print(f"{Grn}\nProfile Saved!{End}")
                         break
                     else:
                         print(f"{Red}Enter a valid command{End}")
@@ -138,7 +138,7 @@ while usrDecision == "proceed": # Main Loop
                         elif key == "Contact No.":
                             print(key, ":", val)
             if searchKey not in collectData:
-                print(f"\nSorry, {searchKey} does not exist in our list of contacts.")
+                print(f"{Red}\nSorry, {searchKey} does not exist in our list of contacts.{End}")
             print("\n\nDo you want to proceed to menu? (Y/N)")
             while True:
                 usrVery = input("\n> ").lower()
@@ -165,4 +165,4 @@ while usrDecision == "proceed": # Main Loop
     else:
         print(f"\n{Red}Enter a valid command{End}")
 else:
-    print("Have a nice day! :)")
+    print(f"{Yllw}Have a nice day! :){End}")
