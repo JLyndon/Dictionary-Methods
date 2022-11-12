@@ -30,25 +30,37 @@ Bldtxt = "\33[1m"
 
 database = {}
 
-#usrDecision = "proceed"  # Loop counter variable 
+usrDecision = "proceed"  # Loop counter variable 
 
-usrFName = input("Full Name: ") # Prompts for personal details --- OPTION 1
-usrAge = input("Age: ")
-usrAddr = input("Address: ")
-usrCNum = input("Contact No.: ")
+while usrDecision == "proceed": # Main Loop
+    print("What would you like to do?\n\nMenu:\n\nType '1' to register a profile.\nType '2' to search a profile.\nType '3' or 'exit' to terminate.")
+    usrAction = input("> ").lower()
+    if usrAction == "1": 
+        print("Provide your personal details below.\n")
+        usrFName = input("Full Name: ") # Prompts for personal details --- OPTION 1
+        usrAge = input("Age: ")
+        usrAddr = input("Address: ")
+        usrCNum = input("Contact No.: ")
+        print("Verify your details\n", "\nDo you want to confirm this profile? (Y/N)")
+    
+        queryProf = dict({
+            "Full Name": usrFName,
+            "Age": usrAge,
+            "Address": usrAddr,
+            "Contact No.": usrCNum
+        })
 
-queryProf = dict({
-    "Full Name": usrFName,
-    "Age": usrAge,
-    "Address": usrAddr,
-    "Contact No.": usrCNum
-})
+        for label, details in queryProf.items():
+            print(label, ": ", details)
+    
+        usrVerify = input("\n> ").lower()
 
-print(type(queryProf))
-print(queryProf)
-
-# while usrDecision == "proceed": # Main Loop
-#     print("What would you like to do?\n\nMenu:\n\nType "1" to register a profile.\nType "2" to search a profile.\nType "3" or "exit" to terminate.")
-#     usrAction = input("> ")
-# else:
-#     print("Have a nice day! :)")
+        if usrVerify == "y":
+            database.update(queryProf)
+            print(database)
+    elif usrAction == "2":
+        print("Coming Soon")
+    elif (usrAction == "3") or (usrAction == "exit"):
+        usrDecision = "terminate"
+else:
+    print("Have a nice day! :)")
