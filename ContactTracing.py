@@ -29,7 +29,7 @@ def removeSpaces(strn):
         return checkspaces
     else:
         finalstr = strn.replace(" ", "")
-        return finalstr
+        return finalstr.capitalize()
 
 Red = "\33[91m" # Decorative Variable Group
 Grn = "\33[92m"
@@ -48,7 +48,15 @@ usrDecision = "proceed"  # Main Loop counter variable
 
 while usrDecision == "proceed": # Main Loop
     print("\nWhat would you like to do?\n\nMenu:\n\nType '1' to register a profile.\nType '2' to search a profile.\nType '3' or 'exit' to terminate.")
-    usrAction = input("\n> ")
+    choices = ["1","2","3","exit"]
+    usrAction = ""
+    while True:
+        decisionU = input("\n> ").lower()
+        if decisionU in choices:
+            usrAction = decisionU
+            break
+        else:
+            print("Enter a valid command")
     if usrAction == "1": 
         print("\nProvide your personal details below.\n")
         print("Full Name")    # Prompts for personal details --- OPTION 1
@@ -85,7 +93,8 @@ while usrDecision == "proceed": # Main Loop
         while True:
             if usrVerify == "y":
                 database_items = len(database)
-                database.update({f"Data {database_items+1}": queryProf})
+                nameConcat = " ".join(queryProf["Full Name"]) 
+                database.update({nameConcat : queryProf})
                 print("Profile Saved!")
                 break
             elif usrVerify == "n":
@@ -96,21 +105,64 @@ while usrDecision == "proceed": # Main Loop
                         break
                     elif usrDiscard == "n":
                         database_items = len(database)
-                        database.update({f"Data {database_items+1}": queryProf})
+                        nameConcat = " ".join(queryProf["Full Name"]) 
+                        database.update({nameConcat : queryProf})
                         print("Profile Saved!")
                         break
                     else:
                         print("Enter a valid command")
                 break
-            else:
-                print("Enter a valid command")
 
     elif usrAction == "2":
-        usrSearchFilter1 = removeSpaces(input("Enter First Name: "))
-        usrSearchFilter2 = input("Enter Middle Name: ")
-        usrSearchFilter3 = input("Enter Last Name: ")
-        break
+        proceeding = "proceed"
+        while proceeding == "proceed":
+            print("Search by: Full Name")
+            usrNameFilter1 = removeSpaces(input("\nEnter First Name: "))
+            usrNameFilter2 = removeSpaces(input("Enter Middle Name: "))
+            usrNameFilter3 = removeSpaces(input("Enter Last Name: "))
+            searchKey = " ".join([usrNameFilter1, usrNameFilter2, usrNameFilter3])
+            collectData = []
+            for i, j in database.items():
+                collectData.append(i)
+                if i == searchKey:
+                    for key, val in j.items():
+                        if key == "Full Name":
+                            ConcatinatedName = ""
+                            for namefragment in val:
+                                ConcatinatedName += namefragment + " "
+                            print(key, "  :", ConcatinatedName)
+                        elif key == "Age":
+                            print(key, "        :", val)
+                        elif key == "Address":
+                            print(key, "    :", val)
+                        elif key == "Contact No.":
+                            print(key, ":", val)
+            if searchKey not in collectData:
+                print(f"\nSorry, {searchKey} does not exist in our list of contacts.")
+            print("\n\nDo you want to proceed to menu? (Y/N)")
+            while True:
+                usrVery = input("\n> ").lower()
+                if usrVery == "y":
+                    proceeding = "not"
+                    break
+                elif usrVery == "n":
+                    print("\nDo you want to continue searching? (Y/N)")
+                    while True:
+                        decideOpt2 = input("\n> ").lower()
+                        if decideOpt2 == "y":
+                            break
+                        elif decideOpt2 == "n":
+                            proceeding = "not"
+                            break
+                        else:
+                            print("Enter a valid command")
+                    break
+                else:
+                    print("Enter a valid command")
+        
     elif (usrAction == "3") or (usrAction == "exit"):
         usrDecision = "terminate"
+    else:
+        print("\nEnter a valid command")
 else:
     print("Have a nice day! :)")
