@@ -66,7 +66,7 @@ while usrDecision == "proceed": # Main Loop
         usrAge =   input("\nAge         : ")
         usrAddr =  input("Address     : ")
         usrCNum =  input("Contact No. : ")
-        print("\nVerify your details", "\nDo you want to confirm this profile? (Y/N)")
+        print(f"\n{Yllw}Verify your details{End}".center(80, " "), "\nDo you want to confirm this profile? (Y/N)")
     
         queryProf = dict({
             "Full Name": [usrFName, usrMName, usrLName],
@@ -125,12 +125,13 @@ while usrDecision == "proceed": # Main Loop
             for i, j in database.items():
                 collectData.append(i)
                 if i == searchKey:
+                    print(f"{Grn}\nProfile Found!{End}".center(80, " "))
                     for key, val in j.items():
                         if key == "Full Name":
                             ConcatinatedName = ""
                             for namefragment in val:
                                 ConcatinatedName += namefragment + " "
-                            print(key, "  :", ConcatinatedName)
+                            print("\n", key, "  :", ConcatinatedName)
                         elif key == "Age":
                             print(key, "        :", val)
                         elif key == "Address":
